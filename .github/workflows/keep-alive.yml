@@ -16,7 +16,7 @@ jobs:
           CS_NAME=$(gh codespace list --json name,repository -q '.[] | select(.repository | endswith("AI-Agent-Hermes")) | .name' | head -n 1)
           if [ -n "$CS_NAME" ]; then
             echo "Đang đánh thức Codespace: $CS_NAME"
-            gh codespace ssh -c "$CS_NAME" -- "pgrep -f 'hermes gateway' > /dev/null || nohup ~/.local/bin/hermes gateway > ~/.hermes-gateway.log 2>&1 &"
+            gh codespace ssh -c "$CS_NAME" -- "pgrep -f '9router' > /dev/null || nohup 9router > ~/.9router.log 2>&1 & sleep 2; pgrep -f 'hermes gateway' > /dev/null || nohup ~/.local/bin/hermes gateway > ~/.hermes-gateway.log 2>&1 &"
           else
             echo "Không tìm thấy Codespace phù hợp."
           fi
