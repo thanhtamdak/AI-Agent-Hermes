@@ -1,18 +1,15 @@
-FROM ubuntu:22.04
+FROM node:22-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PATH="/usr/local/bin:/root/.local/bin:/root/.hermes/bin:${PATH}"
+ENV PATH="/root/.local/bin:/root/.hermes/bin:${PATH}"
 
 RUN apt-get update && apt-get install -y \
-    curl git python3 python3-pip build-essential ca-certificates xz-utils \
+    curl git python3 python3-pip build-essential ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -fsSL https://nodejs.org -o node.tar.xz \
-    && tar -xJf node.tar.xz -C /usr/local --strip-components=1 \
-    && rm node.tar.xz
-
 RUN npm install -g 9router
-RUN curl -fsSL https://githubusercontent.com | bash
+
+RUN pip3 install --break-system-packages hermes-agent || git clone https://github.com /opt/hermes && pip3 install --break-system-packages -e /opt/hermes
 
 WORKDIR /app
 COPY start.sh /app/start.sh
