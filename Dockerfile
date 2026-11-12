@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="/root/.local/bin:/root/.hermes/bin:${PATH}"
 
 RUN apt-get update && apt-get install -y \
-    curl git python3 python3-pip build-essential ca-certificates \
+    curl git python3 python3-pip build-essential ca-certificates gnupg \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fsSL https://nodesource.com | bash - \
