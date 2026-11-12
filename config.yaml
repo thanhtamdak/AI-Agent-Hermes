@@ -1,0 +1,16 @@
+providers:
+  9router:
+    base_url: "http://localhost:20128/v1"
+    api_key: "sk-7eb81c71985ec060-juqtvy-c5c56099"
+    api_mode: "openai"
+
+model:
+  provider: "custom:9router"
+  name: "hermes"
+telemetry:
+  shared_metrics:
+    enabled: false
+    send: false
+    offer_version: 2
+webapp:
+  enabled: true
