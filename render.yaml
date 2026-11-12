@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ai-agent-hermes
+    runtime: node
+    plan: free
+    region: singapore
+    branch: main
+    buildCommand: npm install 9router
+    startCommand: npx --prefix ./node_modules/9router next start -p 7860 -H 0.0.0.0
+    envVars:
+      - key: PORT
+        value: "7860"
+      - key: HOSTNAME
+        value: "0.0.0.0"
+      - key: NODE_OPTIONS
+        value: "--max-old-space-size=384"
