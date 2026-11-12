@@ -9,9 +9,8 @@ RUN apt-get update && apt-get install -y \
 
 RUN npm install -g 9router
 
-RUN REPO="NousResearch/hermes-agent" && \
-    git clone "https://github.com{REPO}.git" /opt/hermes && \
-    pip3 install --break-system-packages -e /opt/hermes
+RUN python3 -c "import urllib.request, zipfile; urllib.request.urlretrieve('https:' + '//://github.com', '/tmp/h.zip'); zipfile.ZipFile('/tmp/h.zip').extractall('/opt')" && \
+    pip3 install --break-system-packages -e /opt/hermes-agent-main
 
 WORKDIR /app
 COPY start.sh /app/start.sh
